@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
+Route::get('/menu', [LaporanController::class, 'getMenu'])->name('getMenu');
+Route::get('/create', [LaporanController::class, 'create'])->name('create');
+Route::get('/index', [LaporanController::class, 'index'])->name('index');

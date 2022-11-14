@@ -27,14 +27,13 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Terkirim <span>| Per 2022</span></h5>
+                  <h5 class="card-title"><span>KATEGORI</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cursor"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1</h6>
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
+                      <h6>IT</h6>
                     </div>
                   </div>
                 </div>
@@ -45,16 +44,15 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card customers-card">
                 <div class="card-body">
-                  <h5 class="card-title">Diproses <span>| Per 2022</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-arrow-repeat"></i>
+                    <h5 class="card-title"><span>KATEGORI</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div class="ps-3">
+                        <h6>Keuangan</h6>
+                        </div>
                     </div>
-                    <div class="ps-3">
-                      <h6>4</h6>
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div><!-- End Diproses -->
@@ -62,16 +60,15 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
                 <div class="card-body">
-                  <h5 class="card-title">Selesai <span>| Per 2022</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-check"></i>
+                    <h5 class="card-title"><span>KATEGORI</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-check"></i>
+                        </div>
+                        <div class="ps-3">
+                        <h6>Pemasaran</h6>
+                        </div>
                     </div>
-                    <div class="ps-3">
-                      <h6>30</h6>
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div><!-- End Selesai -->

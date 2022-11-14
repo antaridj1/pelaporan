@@ -7,7 +7,8 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-       @include('layout.alert')
+        @include('layout.alert')
+        
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">

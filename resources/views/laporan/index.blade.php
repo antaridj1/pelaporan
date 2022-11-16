@@ -43,25 +43,25 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row"><a href="#">00003</a></th>
+                            <th scope="row">00003</th>
                             <td>IT</td>
-                            <td><a href="#" class="text-primary">Aplikasi BRI Mobile Error</a></td>
+                            <td>Aplikasi BRI Mobile Error</td>
                             <td>03/01/2022</td>
                             <td class="text-center"><span class="badge bg-success">Selesai</span></td>
                             <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a href="#">00004</a></th>
+                            <th scope="row">00004</th>
                             <td>Keuangan</td>
-                            <td><a href="#" class="text-primary">Pertimbangan perubahan proses pencairan dana</a></td>
+                            <td>Pertimbangan perubahan proses pencairan dana</td>
                             <td>02/01/2022</td>
                             <td class="text-center"><span class="badge bg-success">Selesai</span></td>
                             <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a href="#">00005</a></th>
+                            <th scope="row">00005</th>
                             <td>Pemasaran</td>
-                            <td><a href="#" class="text-primary">Pertimbangan taktik pemasaran baru</a></td>
+                            <td>Pertimbangan taktik pemasaran baru</td>
                             <td>01/01/2022</td>
                             <td class="text-center"><span class="badge bg-success">Selesai</span></td>
                             <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>

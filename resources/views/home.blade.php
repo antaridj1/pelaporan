@@ -23,6 +23,25 @@
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
+            <div class="col-xxl-12 col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                      <h5 class="card-title mb-0">Halo, Admin Unit A!</h5>
+                      <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol di sebelah kanan</span>
+                    </div>
+                    <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
+                      <button class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</button>
+                    </div>
+                  
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <!-- Terkirim -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
@@ -43,7 +62,7 @@
             </div><!-- End Terkirim -->
             <!-- Diproses -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card customers-card">
+              <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Diproses <span>| Per 2022</span></h5>
                   <div class="d-flex align-items-center">
@@ -60,7 +79,7 @@
             </div><!-- End Diproses -->
             <!-- Selesai -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+              <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Selesai <span>| Per 2022</span></h5>
                   <div class="d-flex align-items-center">
@@ -82,7 +101,14 @@
               <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
-                    <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
+                      <div class="mt-3">
+                        <button class="btn btn-primary btn-sm">Lihat Semua</button>
+                      </div>
+                      
+                    </div>
+                    
   
                     <table class="table table-borderless datatable">
                       <thead>
@@ -95,21 +121,21 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row"><a href="#">00003</a></th>
+                          <th scope="row">00003</th>
                           <td>IT</td>
-                          <td><a href="#" class="text-primary">Aplikasi BRI Mobile Error</a></td>
+                          <td>Aplikasi BRI Mobile Error</td>
                           <td><span class="badge bg-danger">Terkirim</span></td>
                         </tr>
                         <tr>
-                          <th scope="row"><a href="#">00002</a></th>
+                          <th scope="row">00002</th>
                           <td>Keuangan</td>
-                          <td><a href="#" class="text-primary">Pertimbangan perubahan proses pencairan dana</a></td>
+                          <td>Pertimbangan perubahan proses pencairan dana</td>
                           <td><span class="badge bg-warning">Diproses</span></td>
                         </tr>
                         <tr>
-                          <th scope="row"><a href="#">00001</a></th>
+                          <th scope="row">00001</th>
                           <td>Pemasaran</td>
-                          <td><a href="#" class="text-primary">Pertimbangan taktik pemasaran baru</a></td>
+                          <td>Pertimbangan taktik pemasaran baru</td>
                           <td><span class="badge bg-success">Selesai</span></td>
                         </tr>
                       </tbody>

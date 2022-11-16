@@ -45,7 +45,7 @@
             <!-- Diproses -->
             <div class="col-xxl-4 col-md-6">
                 <a href="#">
-                    <div class="card info-card customers-card">
+                    <div class="card info-card sales-card">
                         <div class="card-body">
                             <h5 class="card-title"><span>KATEGORI</span></h5>
                             <div class="d-flex align-items-center">
@@ -62,7 +62,7 @@
             </div><!-- End Diproses -->
             <!-- Selesai -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+              <div class="card info-card sales-card">
                 <div class="card-body">
                     <h5 class="card-title"><span>KATEGORI</span></h5>
                     <div class="d-flex align-items-center">

@@ -23,8 +23,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/profile', [UserController::class, 'index'])->name('profile');
-Route::get('/menu', [LaporanController::class, 'getMenu'])->name('getMenu');
-Route::get('/create', [LaporanController::class, 'create'])->name('create');
-Route::get('/index', [LaporanController::class, 'index'])->name('index');
+Route::middleware('auth')->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::get('/menu', [LaporanController::class, 'getMenu'])->name('getMenu');
+
+    Route::group(['prefix' => 'laporan', 'as' => 'laporan.'],function () {
+        Route::get('/', [LaporanController::class, 'index'])->name('index');
+        Route::get('create', [LaporanController::class, 'create'])->name('create');
+        Route::post('create', [LaporanController::class, 'store'])->name('store');
+    });
+   
+});

@@ -7,7 +7,6 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-       @include('layout.alert')
         <h1>Menu Kategori</h1>
         <nav>
             <ol class="breadcrumb">

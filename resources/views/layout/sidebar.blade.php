@@ -3,15 +3,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('home')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{route('laporan.create')}}">
           <i class="bi bi-pencil"></i>
           <span>Buat Laporan</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+          <i class="bi bi-journal-text"></i>
+          <span>Laporan</span>
         </a>
       </li><!-- End Dashboard Nav -->
 

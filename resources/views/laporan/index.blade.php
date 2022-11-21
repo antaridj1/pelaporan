@@ -6,9 +6,7 @@
 @include('layout.sidebar')
 
 <main id="main" class="main">
-    <div class="pagetitle">
-        @include('layout.alert')
-        
+    <div class="pagetitle">   
         <h1>Laporan</h1>
         <nav>
             <ol class="breadcrumb">
@@ -25,57 +23,47 @@
         <div class="col-lg-12">
             <div class="row">
                 <!-- Recent Sales -->
-                <div class="col-12">
-                  <div class="card recent-sales overflow-auto">
-                    <div class="card-body">
-                      <h5 class="card-title">Laporan Selesai <span>| Per 2022</span></h5>
-    
-                      <table class="table table-borderless datatable">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Kategori</th>
-                            <th scope="col">Perihal</th>
-                            <th scope="col">Tanggal</th>
-                            <th class="text-center" scope="col">Status</th>
-                            <th class="text-center" scope="col">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">00003</th>
-                            <td>IT</td>
-                            <td>Aplikasi BRI Mobile Error</td>
-                            <td>03/01/2022</td>
-                            <td class="text-center"><span class="badge bg-success">Selesai</span></td>
-                            <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">00004</th>
-                            <td>Keuangan</td>
-                            <td>Pertimbangan perubahan proses pencairan dana</td>
-                            <td>02/01/2022</td>
-                            <td class="text-center"><span class="badge bg-success">Selesai</span></td>
-                            <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">00005</th>
-                            <td>Pemasaran</td>
-                            <td>Pertimbangan taktik pemasaran baru</td>
-                            <td>01/01/2022</td>
-                            <td class="text-center"><span class="badge bg-success">Selesai</span></td>
-                            <td class="text-center"><button class="btn btn-primary btn-sm">Detail</button></td>
-                          </tr>
-                        </tbody>
-                      </table>
-    
-                    </div>
-    
-                  </div>
+                <div class="col-12"> 
+                  @forelse ($laporans as $laporan)
+                      <div class="card">
+                          <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <span>{{$laporan->kategori}} | {{$laporan->created_at->format('d M Y')}}</span>
+                                <span class="badge rounded-pill bg-secondary">{{$laporan->status}}</span>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">{{$laporan->judul}}</h5>
+                            {{$laporan->detail}}
+                          </div>
+                          <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                               <a href="#">Lihat 1 saran</a href="#">
+                               @if ($laporan->status === 'terkirim')
+                                  <div>
+                                    <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></button>
+                                </div>
+                               @endif
+                              
+                            </div>
+                           
+                          </div>
+                      </div><!-- End Card with header and footer -->
+                  @empty
+                        <div class="card">
+                          <p>Tidak Ada Data</p>
+                        </div>
+                  @endforelse
+                
+        
                 </div><!-- End Recent Sales -->
             </div>
       </div>
+      
     </section>
-
+    @if(session()->has('status'))
+      @include('layout.alert')
+    @endif
   </main><!-- End #main -->
   @endsection

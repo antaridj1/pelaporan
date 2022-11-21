@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Laporan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'kategori',
+        'judul',
+        'detail',
+        'user_id',
+        'status',
+        'alasan_ditolak'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function sarans()
+    {
+        return $this->hasMany(Saran::class, 'saran_id');
+    }
 }

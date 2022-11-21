@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
 {
@@ -13,7 +15,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        return view('laporan.index');
+        $laporans = Laporan::all();
+        return view('laporan.index',compact('laporans'));
     }
 
     /**
@@ -39,7 +42,22 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kategori' => 'required',
+            'judul' => 'required',
+            'detail' => 'required',
+        ]);
+
+        Laporan::create([
+            'kategori' => $request->kategori,
+            'judul' => $request->judul,
+            'detail' => $request->detail,
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect('laporan')
+            ->with('status','success')
+            ->with('message','Laporan berhasil terkirim');
     }
 
     /**

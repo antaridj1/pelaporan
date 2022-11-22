@@ -41,7 +41,7 @@
                                 @if ($laporan->status === 'terkirim')
                                   <div>
                                       <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                                      <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                      <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
                                         <i class="bi bi-trash-fill"></i>
                                       </button>
                                   </div>

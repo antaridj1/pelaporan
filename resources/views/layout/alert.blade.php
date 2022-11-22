@@ -9,5 +9,5 @@
            showConfirmButton: false,
            timer: 3000
         })
-    });
+    });  
 </script>

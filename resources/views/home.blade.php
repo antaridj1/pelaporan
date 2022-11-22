@@ -28,13 +28,11 @@
                   <div class="row">
                     <div class="col-md-8 col-sm-12">
                       <h5 class="card-title mb-0">Halo, Admin Unit A!</h5>
-                      <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol di sebelah kanan</span>
+                      <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol Buat Laporan</span>
                     </div>
                     <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
-                      <button class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</button>
+                      <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</a>
                     </div>
-                  
-                    
                   </div>
                 </div>
               </div>
@@ -51,7 +49,7 @@
                       <i class="bi bi-cursor"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1</h6>
+                      <h6>{{$jumlah_terkirim}}</h6>
                       <span class="text-muted small pt-2 ps-1">laporan</span>
                     </div>
                   </div>
@@ -69,7 +67,7 @@
                       <i class="bi bi-arrow-repeat"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>4</h6>
+                      <h6>{{$jumlah_diproses}}</h6>
                       <span class="text-muted small pt-2 ps-1">laporan</span>
                     </div>
                   </div>
@@ -86,7 +84,7 @@
                       <i class="bi bi-check"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>30</h6>
+                      <h6>{{$jumlah_selesai}}</h6>
                       <span class="text-muted small pt-2 ps-1">laporan</span>
                     </div>
                   </div>
@@ -103,40 +101,39 @@
                     <div class="d-flex justify-content-between">
                       <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
                       <div class="mt-3">
-                        <button class="btn btn-primary btn-sm">Lihat Semua</button>
+                        <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                       </div>
-                      
                     </div>
-                    
-  
                     <table class="table table-borderless datatable">
                       <thead>
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Kategori</th>
-                          <th scope="col">Perihal</th>
+                          <th scope="col">Judul</th>
                           <th scope="col">Status</th>
+                          <th scope="col">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">00003</th>
-                          <td>IT</td>
-                          <td>Aplikasi BRI Mobile Error</td>
-                          <td><span class="badge bg-danger">Terkirim</span></td>
+                        @forelse ($laporans as $laporan)
+                            <tr>
+                              <th scope="row">{{str_pad($laporan->id, 6, '0', STR_PAD_LEFT)}}</th>
+                              <td>{{$laporan->kategori}}</td>
+                              <td>{{$laporan->judul}}</td>
+                              <td><span class="badge bg-secondary">{{$laporan->status}}</span></td>
+                              <td>
+                                <a href="" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
+                                @if ($laporan->status === 'terkirim')
+                                  <a href="" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                                  <button type="button" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                @endif
+                              </td>
                         </tr>
-                        <tr>
-                          <th scope="row">00002</th>
-                          <td>Keuangan</td>
-                          <td>Pertimbangan perubahan proses pencairan dana</td>
-                          <td><span class="badge bg-warning">Diproses</span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">00001</th>
-                          <td>Pemasaran</td>
-                          <td>Pertimbangan taktik pemasaran baru</td>
-                          <td><span class="badge bg-success">Selesai</span></td>
-                        </tr>
+                        @empty
+                            <tr>
+                              <td>Tidak ada data</td>
+                            </tr>
+                        @endforelse
                       </tbody>
                     </table>
   

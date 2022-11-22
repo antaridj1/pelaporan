@@ -68,7 +68,8 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        //
+        $laporan = Laporan::find($id);
+        return view('laporan.show',compact('laporan'));
     }
 
     /**
@@ -77,9 +78,9 @@ class LaporanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Laporan $laporan)
     {
-        //
+        return view('laporan.edit',compact('laporan'));
     }
 
     /**
@@ -89,9 +90,23 @@ class LaporanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Laporan $laporan)
     {
-        //
+        $request->validate([
+            'kategori' => 'required',
+            'judul' => 'required',
+            'detail' => 'required',
+        ]);
+
+        $laporan->update([
+            'kategori' => $request->kategori,
+            'judul' => $request->judul,
+            'detail' => $request->detail,
+        ]);
+
+        return redirect('laporan')
+            ->with('status','success')
+            ->with('message','Laporan berhasil terupdate');
     }
 
     /**
@@ -100,8 +115,12 @@ class LaporanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Laporan $laporan)
     {
-        //
+        $laporan->delete();
+
+        return redirect('laporan')
+            ->with('status','success')
+            ->with('message','Laporan berhasil terhapus');
     }
 }

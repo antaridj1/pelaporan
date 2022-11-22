@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jumlah_terkirim = Laporan::where('status','terkirim')->count();
+        $jumlah_diproses = Laporan::where('status','diproses')->count();
+        $jumlah_selesai = Laporan::where('status','selesai')->count();
+        $laporans = Laporan::latest()->take(5)->get();
+
+        return view('home',compact(['jumlah_terkirim','jumlah_diproses','jumlah_selesai','laporans']));
     }
 }

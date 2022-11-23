@@ -17,7 +17,7 @@ class Saran extends Model
 
     public function laporan()
     {
-        return $this->belongsTo(Laporan::class, 'laporan_id');
+        return $this->belongsTo(Laporan::class, 'saran_id');
     }
 
     public function user()

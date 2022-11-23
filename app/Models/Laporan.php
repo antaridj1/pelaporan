@@ -15,12 +15,18 @@ class Laporan extends Model
         'detail',
         'user_id',
         'status',
-        'alasan_ditolak'
+        'alasan_ditolak',
+        'penanggungjawab'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function penanggungjawab()
+    {
+        return $this->belongsTo(User::class, 'penanggungjawab', 'id');
     }
 
     public function sarans()

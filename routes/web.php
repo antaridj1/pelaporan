@@ -27,7 +27,6 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
-    Route::get('/menu', [LaporanController::class, 'getMenu'])->name('getMenu');
 
     Route::group(['prefix' => 'laporan', 'as' => 'laporan.'],function () {
         // Route::get('/', [LaporanController::class, 'index'])->name('index');
@@ -36,6 +35,9 @@ Route::middleware('auth')->group(function(){
         Route::resource('/', LaporanController::class)->parameters([
             '' => 'laporan'
         ]);
+        Route::get('/menu', [LaporanController::class, 'menu'])->name('menu');
+        Route::patch('/{laporan}/verifikasi', [LaporanController::class, 'verifikasi'])->name('verifikasi');
+
     });
    
 });

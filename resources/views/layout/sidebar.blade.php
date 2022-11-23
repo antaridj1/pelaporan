@@ -8,6 +8,13 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+          <i class="bi bi-journal-text"></i>
+          <span>Laporan</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
       @if (auth()->user()->role === 'admin')
           <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('laporan.create')}}">
@@ -15,14 +22,22 @@
               <span>Buat Laporan</span>
             </a>
         </li><!-- End Dashboard Nav -->
-      @endif
-      
+
+      @elseif (auth()->user()->role === 'master_admin')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('laporan.index')}}">
-          <i class="bi bi-journal-text"></i>
-          <span>Laporan</span>
+          <i class="bi bi-people"></i>
+          <span>Pegawai</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+          <i class="bi bi-bank"></i>
+          <span>Unit BRI</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      @endif
 
     </ul>
 

@@ -6,12 +6,12 @@
 @include('layout.sidebar')
 
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Menu Kategori</h1>
+    <div class="pagetitle">   
+        <h1>Laporan</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Menu</li>
+            <li class="breadcrumb-item active">Laporan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -21,63 +21,51 @@
       <div class="row">
         <!-- Left side columns -->
         <div class="col-lg-12">
-          <div class="row">
-            <!-- Terkirim -->
-            <div class="col-xxl-4 col-md-6">
-                <a href="#">
-                    <div class="card info-card sales-card">
-                        <div class="card-body">
-                        <h5 class="card-title"><span>KATEGORI</span></h5>
-                        <div class="d-flex align-items-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-cursor"></i>
-                            </div>
-                            <div class="ps-3">
-                            <h6>IT</h6>
-                            </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </a>
-            </div><!-- End Terkirim -->
-            <!-- Diproses -->
-            <div class="col-xxl-4 col-md-6">
-                <a href="#">
-                    <div class="card info-card sales-card">
-                        <div class="card-body">
-                            <h5 class="card-title"><span>KATEGORI</span></h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-arrow-repeat"></i>
-                                </div>
-                                <div class="ps-3">
-                                <h6>Keuangan</h6>
+            <div class="row">
+                <!-- Recent Sales -->
+                @forelse ($laporans as $laporan)
+                    <div class="col-12"> 
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <span>{{$laporan->kategori}} | {{$laporan->created_at->format('d M Y')}}</span>
+                                    <span class="badge rounded-pill bg-secondary">{{$laporan->status}}</span>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{$laporan->judul}}</h5>
+                                {{$laporan->detail}}
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <p>Pengirim : {{$laporan->user->name}}</p>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#tolakModal_{{$laporan->id}}">
+                                            Tolak
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#terimaModal_{{$laporan->id}}">
+                                            Terima
+                                        </button>
+                                        @include('layout.modal')
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Card with header and footer -->
+                    </div><!-- End Recent Sales -->
+                @empty
+                    <div class="col-12"> 
+                        <div class="card">
+                            <p>Tidak Ada Data</p>
                         </div>
                     </div>
-                </a>
-            </div><!-- End Diproses -->
-            <!-- Selesai -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                    <h5 class="card-title"><span>KATEGORI</span></h5>
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-check"></i>
-                        </div>
-                        <div class="ps-3">
-                        <h6>Pemasaran</h6>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div><!-- End Selesai -->
-          </div>
+                @endforelse
+            </div>
       </div>
+      
     </section>
-
+    
+    @if(session()->has('status'))
+      @include('layout.alert')
+    @endif
   </main><!-- End #main -->
   @endsection

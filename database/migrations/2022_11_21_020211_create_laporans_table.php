@@ -21,6 +21,7 @@ class CreateLaporansTable extends Migration
             $table->string('status')->default('terkirim');
             $table->text('alasan_ditolak')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('penanggungjawab')->nullable();
             $table->timestamps();
         });
     }

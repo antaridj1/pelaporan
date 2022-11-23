@@ -13,10 +13,18 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $laporans = Laporan::all();
-        return view('laporan.index',compact('laporans'));
+        if($request->status)
+        {
+            $laporans = Laporan::where('status',$request->status)->get();
+            return view('laporan.menu',compact('laporans'));
+        }
+        else
+        {
+            $laporans = Laporan::all();
+            return view('laporan.index',compact('laporans'));
+        }
     }
 
     /**
@@ -24,9 +32,15 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getMenu()
+    public function menu(Request $request)
     {
-        return view('laporan.menu');
+        dd($request->status);
+        if($request->status){
+            $laporans = Laporan::where('status',$request->status)->get();
+        }else{
+            $laporans = Laporan::all();
+        }
+        return view('laporan.menu',compact('laporans'));
     }
     
     public function create()
@@ -122,5 +136,24 @@ class LaporanController extends Controller
         return redirect('laporan')
             ->with('status','success')
             ->with('message','Laporan berhasil terhapus');
+    }
+
+    public function verifikasi(Request $request, Laporan $laporan){
+        if ($request->status === 'diterima') {
+            $laporan->update([
+                'status' => 'diterima',
+                'penanggungjawab' => Auth::id()
+            ]);
+        }else{
+            $laporan->update([
+                'status' => 'ditolak',
+                'penanggungjawab' => Auth::id(),
+                'alasan_ditolak' => $request->alasan_ditolak
+            ]);
+        }
+        return redirect('home')
+            ->with('status','success')
+            ->with('message','Laporan berhasil diverifikasi');
+       
     }
 }

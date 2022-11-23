@@ -27,11 +27,24 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8 col-sm-12">
-                      <h5 class="card-title mb-0">Halo, Admin Unit A!</h5>
-                      <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol Buat Laporan</span>
+                      <h5 class="card-title mb-0">Halo, {{auth()->user()->name}}</h5>
+                      @if (auth()->user()->role === 'admin')
+                          <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol Buat Laporan</span>
+                      @elseif(auth()->user()->role === 'super_admin')
+                          <span class="mt-0">Ada 1 laporan masuk, periksa sekarang!</span>
+                      @else 
+                          <span class="mt-0">Ada 1 laporan masuk, verifikasi sekarang!</span>
+                      @endif
+                      
                     </div>
                     <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
-                      <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</a>
+                      @if (auth()->user()->role === 'admin')
+                          <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</a>
+                      @elseif(auth()->user()->role === 'super_admin')
+                          <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
+                      @else 
+                          <a href="{{route('laporan.index')}}?status=terkirim" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -43,7 +56,12 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Terkirim <span>| Per 2022</span></h5>
+                  @if (auth()->user()->role === 'admin')
+                      <h5 class="card-title">Terkirim <span>| Per 2022</span></h5>
+                  @else
+                      <h5 class="card-title">Laporan Masuk <span>| Per 2022</span></h5>
+                  @endif
+                 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cursor"></i>
@@ -104,41 +122,7 @@
                         <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                       </div>
                     </div>
-                    <table class="table table-borderless datatable">
-                      <thead>
-                        <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Kategori</th>
-                          <th scope="col">Judul</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse ($laporans as $laporan)
-                            <tr>
-                              <th scope="row">{{str_pad($laporan->id, 6, '0', STR_PAD_LEFT)}}</th>
-                              <td>{{$laporan->kategori}}</td>
-                              <td>{{$laporan->judul}}</td>
-                              <td><span class="badge bg-secondary">{{$laporan->status}}</span></td>
-                              <td>
-                                <a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
-                                @if ($laporan->status === 'terkirim')
-                                  <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                                  <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
-                                    <i class="bi bi-trash-fill"></i>
-                                  </button>
-                                @endif
-                                @include('layout.modal')
-                              </td>
-                        </tr>
-                        @empty
-                            <tr>
-                              <td>Tidak ada data</td>
-                            </tr>
-                        @endforelse
-                      </tbody>
-                    </table>
+                   @include('laporan.table')
   
                   </div>
   

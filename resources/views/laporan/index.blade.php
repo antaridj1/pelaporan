@@ -26,44 +26,7 @@
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Laporan <span>| Per 2022</span></h5>
                   </div>
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr >
-                        <th class="text-center" scope="col">ID</th>
-                        <th class="text-center" scope="col">Tanggal</th>
-                        <th class="text-center" scope="col">Kategori</th>
-                        <th class="text-center" scope="col">Judul</th>
-                        <th class="text-center" scope="col">Status</th>
-                        <th class="text-center" scope="col">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @forelse ($laporans as $laporan)
-                        <tr>
-                            <th class="text-center" scope="row">{{str_pad($laporan->id, 6, '0', STR_PAD_LEFT)}}</th>
-                            <td class="text-center">{{$laporan->created_at->format('d M Y')}}</td>
-                            <td class="text-center">{{$laporan->kategori}}</td>
-                            <td>{{$laporan->judul}}</td>
-                            <td class="text-center"><span class="badge bg-secondary">{{$laporan->status}}</span></td>
-                            <td class="text-center">
-                              <a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
-                              @if ($laporan->status === 'terkirim')
-                                <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
-                                  <i class="bi bi-trash-fill"></i>
-                                </button>
-                              @endif
-                              @include('layout.modal')
-                            </td>
-                        </tr>
-                      @empty
-                          <tr>
-                            <td>Tidak ada data</td>
-                          </tr>
-                      @endforelse
-                    </tbody>
-                  </table>
-
+                 @include('laporan.table')
                 </div>
 
               </div>

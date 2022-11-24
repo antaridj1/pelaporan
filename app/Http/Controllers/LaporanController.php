@@ -142,13 +142,27 @@ class LaporanController extends Controller
         if ($request->status === 'diterima') {
             $laporan->update([
                 'status' => 'diterima',
-                'penanggungjawab' => Auth::id()
+                'user_master_id' => Auth::id()
             ]);
-        }else{
+        }elseif($request->status === 'ditolak'){
             $laporan->update([
                 'status' => 'ditolak',
-                'penanggungjawab' => Auth::id(),
+                'user_master_id' => Auth::id(),
                 'alasan_ditolak' => $request->alasan_ditolak
+            ]);
+        }elseif($request->status === 'diproses'){
+            $laporan->update([
+                'status' => 'diproses',
+                'user_master_id' => Auth::id(),
+            ]);
+        }elseif($request->status === 'unverified'){
+            $laporan->update([
+                'status' => 'unverified',
+                'user_master_id' => Auth::id(),
+            ]);
+        }elseif($request->status === 'verified'){
+            $laporan->update([
+                'status' => 'selesai',
             ]);
         }
         return redirect('home')

@@ -31,9 +31,9 @@
                       @if (auth()->user()->role === 'admin')
                           <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol Buat Laporan</span>
                       @elseif(auth()->user()->role === 'super_admin')
-                          <span class="mt-0">Ada 1 laporan masuk, periksa sekarang!</span>
+                          <span class="mt-0">Ada {{$jumlah_diterima}} laporan masuk, proses sekarang!</span>
                       @else 
-                          <span class="mt-0">Ada 1 laporan masuk, verifikasi sekarang!</span>
+                          <span class="mt-0">Ada {{$jumlah_terkirim}} laporan masuk, verifikasi sekarang!</span>
                       @endif
                       
                     </div>
@@ -41,7 +41,7 @@
                       @if (auth()->user()->role === 'admin')
                           <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</a>
                       @elseif(auth()->user()->role === 'super_admin')
-                          <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
+                          <a href="{{route('laporan.index')}}?status=diterima" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
                       @else 
                           <a href="{{route('laporan.index')}}?status=terkirim" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
                       @endif
@@ -67,7 +67,11 @@
                       <i class="bi bi-cursor"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{$jumlah_terkirim}}</h6>
+                      @if (auth()->user()->role === 'super_admin')
+                        <h6>{{$jumlah_diterima}}</h6>
+                      @else
+                        <h6>{{$jumlah_terkirim}}</h6>
+                      @endif
                       <span class="text-muted small pt-2 ps-1">laporan</span>
                     </div>
                   </div>

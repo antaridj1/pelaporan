@@ -27,8 +27,9 @@ class HomeController extends Controller
         $jumlah_terkirim = Laporan::where('status','terkirim')->count();
         $jumlah_diproses = Laporan::where('status','diproses')->count();
         $jumlah_selesai = Laporan::where('status','selesai')->count();
+        $jumlah_diterima = Laporan::where('status','diterima')->count();
         $laporans = Laporan::latest()->take(5)->get();
 
-        return view('home',compact(['jumlah_terkirim','jumlah_diproses','jumlah_selesai','laporans']));
+        return view('home',compact(['jumlah_terkirim','jumlah_diproses','jumlah_selesai','laporans','jumlah_diterima']));
     }
 }

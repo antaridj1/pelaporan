@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function laporans_ditangani()
     {
-        return $this->hasMany(Laporan::class, 'penanggungjawab', 'id');
+        return $this->hasMany(Laporan::class, 'user_master_id');
     }
 
     /**

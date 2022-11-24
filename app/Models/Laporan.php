@@ -16,7 +16,7 @@ class Laporan extends Model
         'user_id',
         'status',
         'alasan_ditolak',
-        'penanggungjawab'
+        'user_master_id'
     ];
 
     public function user()
@@ -26,7 +26,7 @@ class Laporan extends Model
 
     public function penanggungjawab()
     {
-        return $this->belongsTo(User::class, 'penanggungjawab', 'id');
+        return $this->belongsTo(User::class, 'user_master_id');
     }
 
     public function sarans()

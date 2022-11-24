@@ -114,25 +114,58 @@
               </div>
             </div><!-- End Selesai -->
           </div>
-          
-          <div class="row">
+          @if(auth()->user()->role === 'master_admin')
+            <div class="row">
               <!-- Recent Sales -->
               <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
+                      <h5 class="card-title">Laporan <span>| Per 2022</span></h5>
                       <div class="mt-3">
                         <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                       </div>
                     </div>
-                   @include('laporan.table')
-  
+                    @include('laporan.table')
+
                   </div>
-  
+
                 </div>
               </div><!-- End Recent Sales -->
-          </div>
+            </div>
+          @else
+          @if($laporan)
+            <div class="row">
+              <!-- Recent Sales -->
+              <div class="col-12">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
+                  <div class="mt-3">
+                    <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
+                  </div>
+                </div>
+                @include('laporan.card')
+              </div><!-- End Recent Sales -->
+            </div>
+            @else
+              <div class="row">
+                <!-- Recent Sales -->
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <h5 class="card-title">Laporan <span>| Per 2022</span></h5>
+                        <div class="mt-3">
+                          <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
+                        </div>
+                      </div>
+                      @include('laporan.table')
+                    </div>
+                  </div>
+                </div><!-- End Recent Sales -->
+              </div>
+            @endif
+          @endif
       </div>
     </section>
 

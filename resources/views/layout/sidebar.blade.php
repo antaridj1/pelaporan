@@ -5,7 +5,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('home')}}">
           <i class="bi bi-house-door"></i>
-          <span>Dashboard</span>
+          <span>Home</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
@@ -27,7 +27,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('laporan.index')}}">
           <i class="bi bi-people"></i>
-          <span>Pegawai</span>
+          <span>Pegawai IT</span>
         </a>
       </li><!-- End Dashboard Nav -->
 

@@ -22,7 +22,13 @@ class LaporanController extends Controller
         }
         else
         {
-            $laporans = Laporan::all();
+            if(Auth::user()->role === 'admin'){
+                $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
+            }elseif(Auth::user()->role === 'super_admin'){
+                $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status','diterima')->latest()->get();
+            }else{
+                $laporans = Laporan::latest()->get();
+            }
             return view('laporan.index',compact('laporans'));
         }
     }

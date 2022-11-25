@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
-use App\Models\Laporan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,21 @@ Route::middleware('auth')->group(function(){
         ]);
         Route::get('/menu', [LaporanController::class, 'menu'])->name('menu');
         Route::patch('/{laporan}/verifikasi', [LaporanController::class, 'verifikasi'])->name('verifikasi');
+        
+    });
 
+    Route::group(['prefix' => 'pegawai', 'as' => 'pegawai.'],function () {
+        Route::resource('/', PegawaiController::class)->parameters([
+            '' => 'pegawai'
+        ]);
+        Route::patch('/{pegawai}/update-status', [PegawaiController::class, 'update_status'])->name('updateStatus');
+    });
+
+    Route::group(['prefix' => 'unit', 'as' => 'unit.'],function () {
+        Route::resource('/', UnitController::class)->parameters([
+            '' => 'unit'
+        ]);
+        Route::patch('/{unit}/update-status', [UnitController::class, 'update_status'])->name('updateStatus');
     });
    
 });

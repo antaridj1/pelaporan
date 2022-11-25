@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">   
-        <h1>Pegawai</h1>
+        <h1>Unit Bank BRI</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Pegawai</li>
+            <li class="breadcrumb-item active">Unit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -24,9 +24,9 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Pegawai</h5>
+                    <h5 class="card-title">Unit Bank BRI</h5>
                   </div>
-                 @include('pegawai.table')
+                 @include('unit.table')
                 </div>
 
               </div>

@@ -25,14 +25,14 @@
 
       @elseif (auth()->user()->role === 'master_admin')
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+        <a class="nav-link collapsed" href="{{route('pegawai.index')}}">
           <i class="bi bi-people"></i>
-          <span>Pegawai IT</span>
+          <span>Pegawai</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+        <a class="nav-link collapsed" href="{{route('unit.index')}}">
           <i class="bi bi-bank"></i>
           <span>Unit BRI</span>
         </a>

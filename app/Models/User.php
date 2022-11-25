@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany(Laporan::class, 'user_master_id');
     }
 
+    public function jumlah_laporan_ditangani()
+    {
+        return Laporan::where('user_master_id',$this->id)->where('status','selesai')->get()->count();
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

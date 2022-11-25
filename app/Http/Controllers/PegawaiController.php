@@ -71,18 +71,33 @@ class PegawaiController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
         ]);
 
         $pegawai->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
         ]);
 
         return redirect('pegawai')
             ->with('status','success')
             ->with('message','Pegawai berhasil diedit');
+    }
+
+    public function update_status(User $pegawai){
+        if ($pegawai->status == true) {
+            $pegawai->update([
+                'status' => false
+            ]);
+        } else {
+            $pegawai->update([
+                'status' => true
+            ]);
+        }
+
+        return redirect('pegawai')
+            ->with('status','success')
+            ->with('message','Status pegawai berhasil diedit');
+        
     }
 
 }

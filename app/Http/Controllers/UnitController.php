@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
@@ -13,7 +14,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $units = User::where('role','admin')->get();
+        return view('unit.index', compact('units'));
     }
 
     /**
@@ -23,7 +25,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('unit.create');
     }
 
     /**
@@ -34,29 +36,27 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'admin'
+        ]);
+
+        return redirect('unit')
+            ->with('status','success')
+            ->with('message','Pegawai berhasil ditambah');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(User $unit)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('unit.edit',compact('unit'));
     }
 
     /**
@@ -66,19 +66,37 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $unit)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $unit->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return redirect('unit')
+            ->with('status','success')
+            ->with('message','Pegawai berhasil diedit');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function update_status(User $unit){
+        if ($unit->status == true) {
+            $unit->update([
+                'status' => false
+            ]);
+        } else {
+            $unit->update([
+                'status' => true
+            ]);
+        }
+
+        return redirect('unit')
+            ->with('status','success')
+            ->with('message','Status unit berhasil diedit');
+        
     }
 }

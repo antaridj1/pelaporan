@@ -4,6 +4,7 @@
         <th class="text-center" scope="col">ID</th>
         <th class="text-center" scope="col">Nama</th>
         <th class="text-center" scope="col">Email</th>
+        <th class="text-center" scope="col">Jumlah Laporan Selesai</th>
         <th class="text-center" scope="col">Status</th>
         <th class="text-center" scope="col">Aksi</th>
     </tr>
@@ -14,8 +15,9 @@
             <th class="text-center" scope="row">{{$pegawai->id}}</th>
             <td class="text-center">{{$pegawai->name}}</td>
             <td class="text-center">{{$pegawai->email}}</td>
+            <td class="text-center">{{$pegawai->jumlah_laporan_ditangani()}}</td>
             <td class="text-center">
-                @if ($pegawai->status === true)
+                @if ($pegawai->status == true)
                     <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#statusModal_{{$pegawai->id}}">
                         Aktif
                     </button>
@@ -24,18 +26,12 @@
                         Nonaktif
                     </button>
                 @endif 
-                @include('layout.modal') 
+                @include('pegawai.modal') 
             </td>
             <td class="text-center">
                 <a href="{{route('pegawai.edit',$pegawai->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                    @include('layout.modal')
-                </td>
-            @else
-                <td class="text-center">{{$pegawai->user->name}}</td>
-                <td class="text-center">{{($pegawai->penanggungjawab)? $pegawai->penanggungjawab->name : '-'}}</td>
-                <td class="text-center"><a href="{{route('pegawai.show',$pegawai->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a></td>
-            @endif
-        
+                @include('pegawai.modal')
+            </td>
         </tr>
     @empty
         <tr>

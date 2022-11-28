@@ -24,7 +24,7 @@
             <div class="row">
                 <!-- Recent Sales -->
                 <div class="col-12"> 
-                   @include('laporan.card')
+                   @include('laporan._card')
                 </div><!-- End Recent Sales -->
             </div>
       </div>

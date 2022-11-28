@@ -126,7 +126,7 @@
                         <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                       </div>
                     </div>
-                    @include('laporan.table')
+                    @include('laporan._table')
 
                   </div>
 
@@ -144,7 +144,7 @@
                     <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                   </div>
                 </div>
-                @include('laporan.card')
+                @include('laporan._card')
               </div><!-- End Recent Sales -->
             </div>
             @else
@@ -159,7 +159,7 @@
                           <a href="{{route('laporan.index')}}" class="btn btn-primary btn-sm">Lihat Semua</a>
                         </div>
                       </div>
-                      @include('laporan.table')
+                      @include('laporan._table')
                     </div>
                   </div>
                 </div><!-- End Recent Sales -->

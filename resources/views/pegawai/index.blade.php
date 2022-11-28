@@ -26,7 +26,7 @@
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Pegawai</h5>
                   </div>
-                 @include('pegawai.table')
+                 @include('pegawai._table')
                 </div>
 
               </div>

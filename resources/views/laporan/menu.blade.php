@@ -25,7 +25,7 @@
                 <!-- Recent Sales -->
                 @forelse ($laporans as $laporan)
                     <div class="col-12"> 
-                        @include('laporan.card')
+                        @include('laporan._card')
                     </div><!-- End Recent Sales -->
                 @empty
                     <div class="col-12"> 

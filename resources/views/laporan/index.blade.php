@@ -26,7 +26,7 @@
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Laporan <span>| Per 2022</span></h5>
                   </div>
-                 @include('laporan.table')
+                 @include('laporan._table')
                 </div>
 
               </div>

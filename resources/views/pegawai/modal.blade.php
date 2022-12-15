@@ -2,7 +2,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">{{($pegawai->status === true) ? 'Nonaktifkan Akun' : 'Aktifkan Akun'}}</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{($pegawai->status == true) ? 'Nonaktifkan Akun' : 'Aktifkan Akun'}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -10,7 +10,7 @@
             @method('patch')
             @csrf
             <div class="form-group"> 
-                <p>Apakah Anda yakin ingin {{($pegawai->status === true) ? 'menonaktifkan' : 'mangaktifkan'}} akun ini?</p>
+                <p>Apakah Anda yakin ingin {{($pegawai->status == true) ? 'menonaktifkan' : 'mangaktifkan'}} akun ini?</p>
             </div>
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

@@ -18,7 +18,7 @@
             <th class="text-center" scope="row">{{str_pad($laporan->id, 6, '0', STR_PAD_LEFT)}}</th>
             <td class="text-center">{{$laporan->kategori}}</td>
             <td>{{$laporan->judul}}</td>
-            <td class="text-center"><span class="badge bg-secondary">{{$laporan->status}}</span></td>
+            <td class="text-center"><span class="badge bg-secondary ">{{$laporan->status}}</span></td>
             @if (auth()->user()->role === 'admin')
                 <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
                 <td class="text-center">

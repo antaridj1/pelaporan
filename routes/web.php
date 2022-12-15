@@ -27,7 +27,8 @@ Auth::routes();
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
 
     Route::group(['prefix' => 'laporan', 'as' => 'laporan.'],function () {
         // Route::get('/', [LaporanController::class, 'index'])->name('index');

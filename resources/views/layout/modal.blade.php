@@ -34,8 +34,8 @@
             @method('patch')
             @csrf
             <div class="form-group"> 
-                <p>Setelah Anda menolak laporan, super admin akan memproses laporan tersebut</p>
-                <p>Apakah Anda yakin untuk menolak laporan ini?</p>
+                <p>Setelah Anda menerima laporan, super admin akan memproses laporan tersebut</p>
+                <p>Apakah Anda yakin untuk menerima laporan ini?</p>
             </div>
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

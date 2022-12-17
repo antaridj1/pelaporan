@@ -1,7 +1,7 @@
  <table class="table table-borderless datatable">
     <thead>
     <tr>
-        <th class="text-center" scope="col">ID</th>
+        <th class="text-center" scope="col">No</th>
         <th class="text-center" scope="col">Nama</th>
         <th class="text-center" scope="col">Email</th>
         <th class="text-center" scope="col">Status</th>
@@ -11,7 +11,7 @@
     <tbody>
     @forelse ($units as $unit)
         <tr>
-            <th class="text-center" scope="row">{{$unit->id}}</th>
+            <th class="text-center" scope="row">{{$loop->iteration}}</th>
             <td class="text-center">{{$unit->name}}</td>
             <td class="text-center">{{$unit->email}}</td>
             <td class="text-center">

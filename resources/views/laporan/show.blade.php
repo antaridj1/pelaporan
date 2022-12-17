@@ -10,8 +10,9 @@
         <h1>Laporan</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Laporan Selesai</li>
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('laporan.index')}}">Laporan</a></li>
+            <li class="breadcrumb-item active">Detail Laporan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

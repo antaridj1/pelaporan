@@ -30,7 +30,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status=diterima">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_DITERIMA}}">
             @method('patch')
             @csrf
             <div class="form-group"> 
@@ -55,7 +55,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status=ditolak">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_DITOLAK}}">
             @method('patch')
             @csrf
             <div class="form-group"> 
@@ -66,8 +66,8 @@
                 </div>
               @enderror
             </div>
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <div class="d-flex justify-content-between mt-2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Batal</button>
                 <button type="submit" class="btn btn-primary" >Kirim</button>
             </div>
           </form>
@@ -98,7 +98,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status=diproses">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_DIPROSES}}">
             @method('patch')
             @csrf
             <div class="form-group"> 
@@ -123,7 +123,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status=unverified">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_SELESAI_DIPROSES}}">
             @method('patch')
             @csrf
             <div class="form-group"> 
@@ -149,7 +149,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status=verified">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_TUNTAS}}">
             @method('patch')
             @csrf
             <div class="form-group"> 

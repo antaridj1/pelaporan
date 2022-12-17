@@ -25,17 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $jumlah_terkirim = Laporan::where('status','terkirim')->count();
-        $jumlah_diproses = Laporan::where('status','diproses')->count();
-        $jumlah_selesai = Laporan::where('status','selesai')->count();
-        $jumlah_diterima = Laporan::where('status','diterima')->count();
+        $jumlah_terkirim = Laporan::where('status', IS_TERKIRIM)->count();
+        $jumlah_diproses = Laporan::where('status', IS_DIPROSES)->count();
+        $jumlah_selesai = Laporan::where('status', IS_SELESAI_DIPROSES)->count();
+        $jumlah_diterima = Laporan::where('status', IS_DITERIMA)->count();
 
         if(Auth::user()->role === 'admin'){
             $laporan = Laporan::where('user_id',Auth::id())->latest()->take(1)->first();
             $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
         }elseif(Auth::user()->role === 'super_admin'){
             $laporan = Laporan::where('user_master_id',Auth::id())->latest()->take(1)->first();
-            $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status','diterima')->latest()->get();
+            $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status', IS_DITERIMA)->latest()->get();
         }else{
             $laporan = Laporan::where('user_master_id',Auth::id())->latest()->take(1)->first();
             $laporans = Laporan::latest()->get();

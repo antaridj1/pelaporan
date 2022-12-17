@@ -44,6 +44,7 @@ class User extends Authenticatable
     {
         return Laporan::where('user_master_id',$this->id)->where('status','selesai')->get()->count();
     }
+
     /**
      * The attributes that should be hidden for serialization.
      *

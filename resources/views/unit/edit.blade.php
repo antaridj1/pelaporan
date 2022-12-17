@@ -10,7 +10,7 @@
         <h1>Edit Unit</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('unit.index')}}">Unit BRI</a></li>
             <li class="breadcrumb-item active">Edit Unit BRI</li>
             </ol>
         </nav>

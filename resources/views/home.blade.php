@@ -29,7 +29,7 @@
                     <div class="col-md-8 col-sm-12">
                       <h5 class="card-title mb-0">Halo, {{auth()->user()->name}}</h5>
                       @if (auth()->user()->role === 'admin')
-                          <span class="mt-0">Terjadi masalah? Buat laporan dengan menekan tombol Buat Laporan</span>
+                          <span class="mt-0">Ada {{$jumlah_selesai}} laporan telah selesai diproses, verifikasi sekarang!</span>
                       @elseif(auth()->user()->role === 'super_admin')
                           <span class="mt-0">Ada {{$jumlah_diterima}} laporan masuk, proses sekarang!</span>
                       @else 
@@ -39,11 +39,11 @@
                     </div>
                     <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
                       @if (auth()->user()->role === 'admin')
-                          <a href="{{route('laporan.create')}}" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Buat Laporan</a>
+                          <a href="{{route('laporan.index')}}?status={{IS_SELESAI_DIPROSES}}" class="btn btn-primary rounded-pill"> <i class="bi bi-journal-text"></i> Lihat Laporan</a>
                       @elseif(auth()->user()->role === 'super_admin')
-                          <a href="{{route('laporan.index')}}?status=diterima" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
+                          <a href="{{route('laporan.index')}}?status={{IS_DITERIMA}}" class="btn btn-primary rounded-pill"> <i class="bi bi-journal-text"></i> Lihat Laporan</a>
                       @else 
-                          <a href="{{route('laporan.index')}}?status=terkirim" class="btn btn-primary rounded-pill"> <i class="bi bi-pencil"></i> Lihat Laporan</a>
+                          <a href="{{route('laporan.index')}}?status='{{IS_TERKIRIM}}'" class="btn btn-primary rounded-pill"> <i class="bi bi-journal-text"></i> Lihat Laporan</a>
                       @endif
                     </div>
                   </div>
@@ -100,7 +100,7 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Selesai <span>| Per 2022</span></h5>
+                  <h5 class="card-title">Butuh Verifikasi<span> | Per 2022</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-check"></i>

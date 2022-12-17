@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Buat Laporan</h1>
+        <h1>Edit Laporan</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Buat Laporan</li>
+            <li class="breadcrumb-item active">Edit Laporan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

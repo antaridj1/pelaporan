@@ -18,7 +18,7 @@ class CreateLaporansTable extends Migration
             $table->string('kategori');
             $table->string('judul');
             $table->text('detail');
-            $table->string('status')->default('terkirim');
+            $table->tinyInteger('status')->default(0);
             $table->text('alasan_ditolak')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_master_id')->nullable();

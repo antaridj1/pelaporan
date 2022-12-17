@@ -33,4 +33,9 @@ class Laporan extends Model
     {
         return $this->hasMany(Saran::class, 'saran_id');
     }
+
+    public function getConvertedIdAttribute()
+    {
+        return str_pad($this->id, 6, '0', STR_PAD_LEFT);
+    }
 }

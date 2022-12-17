@@ -25,6 +25,7 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Pegawai</h5>
+                    <a href="{{route('pegawai.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Pegawai</a>
                   </div>
                  @include('pegawai._table')
                 </div>

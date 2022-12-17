@@ -2,8 +2,8 @@
     <div class="card">
         <div class="card-header">
         <div class="d-flex justify-content-between">
-            <span>{{$laporan->kategori}} | {{$laporan->created_at->format('d M Y')}}</span>
-            <span class="badge rounded-pill bg-secondary">{{$laporan->status}}</span>
+            <span>{{$laporan->kategori}} | {{$laporan->converted_id}} | {{$laporan->created_at->format('d M Y')}}</span>
+            <span class="badge rounded-pill {{badge($laporan->status)}}">{{status($laporan->status)}}</span>
         </div>
         </div>
         <div class="card-body">
@@ -14,7 +14,7 @@
         <div class="card-footer">
             <div class="d-flex justify-content-between">
                 <p>Penanggungjawab : {{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</p>
-                    @if ($laporan->status === 'terkirim')
+                    @if ($laporan->status == IS_TERKIRIM)
                         <div>
                             <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
@@ -22,10 +22,10 @@
                             </button>
                         </div>
                         @include('layout.modal')
-                    @elseif($laporan->status === 'ditolak')
+                    @elseif($laporan->status == IS_DITOLAK)
                         <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
                         @include('layout.modal')
-                    @elseif($laporan->status === 'unverified')
+                    @elseif($laporan->status == IS_SELESAI_DIPROSES)
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#verifiedModal_{{$laporan->id}}">
                             Selesai
                         </button>
@@ -41,7 +41,7 @@
                 <p>Penanggungjawab : {{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</p>
                 </div>
                 <div>
-                @if($laporan->status === 'terkirim')
+                @if($laporan->status === IS_TERKIRIM)
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#tolakModal_{{$laporan->id}}">
                         Tolak
                     </button>
@@ -49,7 +49,7 @@
                         Terima
                     </button>
                     @include('layout.modal')
-                @elseif($laporan->status === 'ditolak')
+                @elseif($laporan->status === IS_DITOLAK)
                     <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
                     @include('layout.modal') 
                 @endif
@@ -61,11 +61,11 @@
             <div class="d-flex justify-content-between">
             <p>Pengirim : {{$laporan->user->name}}</p>
             <div>
-                @if($laporan->status === 'diterima')
+                @if($laporan->status == IS_DITERIMA)
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#prosesModal_{{$laporan->id}}">
                     Proses Sekarang
                 </button>
-                @elseif($laporan->status === 'diproses')
+                @elseif($laporan->status == IS_DIPROSES)
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#unverifiedModal_{{$laporan->id}}">
                     Selesai
                 </button>

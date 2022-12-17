@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class LaporanController extends Controller
             if(Auth::user()->role === 'admin'){
                 $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
             }elseif(Auth::user()->role === 'super_admin'){
-                $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status','diterima')->latest()->get();
+                $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status',IS_DITERIMA)->latest()->get();
             }else{
                 $laporans = Laporan::latest()->get();
             }
@@ -40,7 +41,6 @@ class LaporanController extends Controller
      */
     public function menu(Request $request)
     {
-        dd($request->status);
         if($request->status){
             $laporans = Laporan::where('status',$request->status)->get();
         }else{
@@ -77,7 +77,7 @@ class LaporanController extends Controller
 
         return redirect('laporan')
             ->with('status','success')
-            ->with('message','Laporan berhasil terkirim');
+            ->with('message','Laporan berhasil erkirim');
     }
 
     /**
@@ -145,35 +145,38 @@ class LaporanController extends Controller
     }
 
     public function verifikasi(Request $request, Laporan $laporan){
-        if ($request->status === 'diterima') {
+        if ($request->status == IS_DITERIMA) {
             $laporan->update([
-                'status' => 'diterima',
+                'status' => IS_DITERIMA,
                 'user_master_id' => Auth::id()
             ]);
-        }elseif($request->status === 'ditolak'){
+        }elseif($request->status == IS_DITOLAK){
+            $request->validate([
+                'alasan_ditolak' => 'required',
+            ]);
             $laporan->update([
-                'status' => 'ditolak',
+                'status' => IS_DITOLAK,
                 'user_master_id' => Auth::id(),
                 'alasan_ditolak' => $request->alasan_ditolak
             ]);
-        }elseif($request->status === 'diproses'){
+        }elseif($request->status == IS_DIPROSES){
             $laporan->update([
-                'status' => 'diproses',
+                'status' => IS_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
-        }elseif($request->status === 'unverified'){
+        }elseif($request->status == IS_SELESAI_DIPROSES){
             $laporan->update([
-                'status' => 'unverified',
+                'status' => IS_SELESAI_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
-        }elseif($request->status === 'verified'){
+        }elseif($request->status == IS_TUNTAS){
             $laporan->update([
-                'status' => 'selesai',
+                'status' => IS_TUNTAS,
             ]);
         }
-        return redirect('home')
+        return back()
             ->with('status','success')
-            ->with('message','Laporan berhasil diverifikasi');
+            ->with('message','Status laporan berhasil diupdate');
        
     }
 }

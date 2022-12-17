@@ -15,17 +15,17 @@
     <tbody>
     @forelse ($laporans as $laporan)
         <tr>
-            <th class="text-center" scope="row">{{str_pad($laporan->id, 6, '0', STR_PAD_LEFT)}}</th>
+            <th class="text-center" scope="row">{{$laporan->converted_id}}</th>
             <td class="text-center">{{$laporan->kategori}}</td>
             <td>{{$laporan->judul}}</td>
             <td class="text-center">
-                <span class="badge {{badge($laporan->status)}} ">{{$laporan->status}}</span>
+                <span class="badge {{badge($laporan->status)}} ">{{status($laporan->status)}}</span>
             </td>
             @if (auth()->user()->role === 'admin')
                 <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
                 <td class="text-center">
                 <a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
-                @if ($laporan->status === 'terkirim')
+                @if ($laporan->status == IS_TERKIRIM)
                     <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                     <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
                     <i class="bi bi-trash-fill"></i>

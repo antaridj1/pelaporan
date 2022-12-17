@@ -13,7 +13,7 @@
                 <p>Apakah Anda yakin ingin {{($pegawai->status == true) ? 'menonaktifkan' : 'mangaktifkan'}} akun ini?</p>
             </div>
             <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Batal</button>
                 <button type="submit" class="btn btn-primary" >Yakin </button>
             </div>
           </form>

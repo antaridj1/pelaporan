@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $jumlah_terkirim = Laporan::where('status', IS_TERKIRIM)->count();
         $jumlah_diproses = Laporan::where('status', IS_DIPROSES)->count();
-        $jumlah_selesai = Laporan::where('status', IS_SELESAI_DIPROSES)->count();
+        $jumlah_selesai = Laporan::where('status', IS_TUNTAS)->count();
         $jumlah_diterima = Laporan::where('status', IS_DITERIMA)->count();
 
         if(Auth::user()->role === 'admin'){

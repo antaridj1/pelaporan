@@ -14,7 +14,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawais = User::where('role','super_admin')->get();
+        $pegawais = User::where('role','pegawai')->get();
         return view('pegawai.index', compact('pegawais'));
     }
 
@@ -46,7 +46,7 @@ class PegawaiController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => 'super_admin'
+            'role' => 'pegawai'
         ]);
 
         return redirect('pegawai')

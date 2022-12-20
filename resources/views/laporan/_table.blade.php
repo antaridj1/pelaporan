@@ -5,7 +5,7 @@
         <th class="text-center" scope="col">Kategori</th>
         <th scope="col">Judul</th>
         <th class="text-center" scope="col">Status</th>
-        @if (auth()->user()->role === 'master_admin' || auth()->user()->role === 'super_admin')
+        @if (auth()->user()->role === 'master_unit' || auth()->user()->role === 'pegawai')
             <th class="text-center" scope="col">Pengirim</th>
         @endif
         <th class="text-center" scope="col">Penanggungjawab</th>
@@ -21,7 +21,7 @@
             <td class="text-center">
                 <span class="badge {{badge($laporan->status)}} ">{{status($laporan->status)}}</span>
             </td>
-            @if (auth()->user()->role === 'admin')
+            @if (auth()->user()->role === 'unit')
                 <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
                 <td class="text-center">
                 <a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>

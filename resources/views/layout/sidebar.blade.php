@@ -15,7 +15,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      @if (auth()->user()->role === 'admin')
+      @if (auth()->user()->role === 'unit')
           <li class="nav-item">
             <a class="nav-link {{Route::is('laporan.create')? '' : 'collapsed'}}" href="{{route('laporan.create')}}">
               <i class="bi bi-pencil"></i>

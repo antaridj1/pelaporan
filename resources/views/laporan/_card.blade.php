@@ -10,7 +10,7 @@
         <h5 class="card-title">{{$laporan->judul}}</h5>
         {{$laporan->detail}}
         </div>
-        @if (auth()->user()->role === 'admin')
+        @if (auth()->user()->role === 'unit')
         <div class="card-footer">
             <div class="d-flex justify-content-between">
                 <p>Penanggungjawab : {{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</p>

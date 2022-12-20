@@ -23,9 +23,9 @@ class LaporanController extends Controller
         }
         else
         {
-            if(Auth::user()->role === 'admin'){
+            if(Auth::user()->role === 'unit'){
                 $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
-            }elseif(Auth::user()->role === 'super_admin'){
+            }elseif(Auth::user()->role === 'pegawai'){
                 $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status',IS_DITERIMA)->latest()->get();
             }else{
                 $laporans = Laporan::latest()->get();
@@ -77,7 +77,7 @@ class LaporanController extends Controller
 
         return redirect('laporan')
             ->with('status','success')
-            ->with('message','Laporan berhasil erkirim');
+            ->with('message','Laporan berhasil terkirim');
     }
 
     /**

@@ -29,11 +29,12 @@ class HomeController extends Controller
         $jumlah_diproses = Laporan::where('status', IS_DIPROSES)->count();
         $jumlah_selesai = Laporan::where('status', IS_TUNTAS)->count();
         $jumlah_diterima = Laporan::where('status', IS_DITERIMA)->count();
+        $jumlah_selesai_diproses = Laporan::where('status', IS_SELESAI_DIPROSES)->count();
 
-        if(Auth::user()->role === 'admin'){
+        if(Auth::user()->role === 'unit'){
             $laporan = Laporan::where('user_id',Auth::id())->latest()->take(1)->first();
             $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
-        }elseif(Auth::user()->role === 'super_admin'){
+        }elseif(Auth::user()->role === 'pegawai'){
             $laporan = Laporan::where('user_master_id',Auth::id())->latest()->take(1)->first();
             $laporans = Laporan::where('user_master_id',Auth::id())->orWhere('status', IS_DITERIMA)->latest()->get();
         }else{
@@ -42,6 +43,6 @@ class HomeController extends Controller
         }
         
 
-        return view('home',compact(['jumlah_terkirim','jumlah_diproses','jumlah_selesai','laporans','jumlah_diterima','laporan']));
+        return view('home',compact(['jumlah_terkirim','jumlah_diproses','jumlah_selesai','laporans','jumlah_diterima','laporan', 'jumlah_selesai_diproses']));
     }
 }

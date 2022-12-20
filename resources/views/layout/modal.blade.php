@@ -34,7 +34,7 @@
             @method('patch')
             @csrf
             <div class="form-group"> 
-                <p>Setelah Anda menerima laporan, super admin akan memproses laporan tersebut</p>
+                <p>Setelah Anda menerima laporan, pegawai akan memproses laporan tersebut</p>
                 <p>Apakah Anda yakin untuk menerima laporan ini?</p>
             </div>
             <div class="d-flex justify-content-between">

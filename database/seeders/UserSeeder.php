@@ -19,19 +19,19 @@ class UserSeeder extends Seeder
                 'name' => 'Unit A',
                 'email' => 'unit1@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 'admin'
+                'role' => 'unit'
             ],
             [
-                'name' => 'Super Admin 1',
-                'email' => 'superadmin1@gmail.com',
+                'name' => 'Pegawai 1',
+                'email' => 'pegawai1@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 'super_admin'
+                'role' => 'pegawai'
             ],
             [
-                'name' => 'Super Admin 2',
-                'email' => 'superadmin2@gmail.com',
+                'name' => 'Pegawai 2',
+                'email' => 'pegawai2@gmail.com',
                 'password' => bcrypt('12345678'),
-                'role' => 'super_admin'
+                'role' => 'pegawai'
             ],
             [
                 'name' => 'Master Admin',

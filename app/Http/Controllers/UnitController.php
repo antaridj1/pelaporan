@@ -14,7 +14,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = User::where('role','admin')->get();
+        $units = User::where('role','unit')->get();
         return view('unit.index', compact('units'));
     }
 
@@ -46,7 +46,7 @@ class UnitController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => 'admin'
+            'role' => 'unit'
         ]);
 
         return redirect('unit')

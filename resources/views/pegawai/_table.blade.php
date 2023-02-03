@@ -18,18 +18,16 @@
             <td class="text-center">{{$pegawai->jumlah_laporan_ditangani()}}</td>
             <td class="text-center">
                 @if ($pegawai->status == true)
-                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#statusModal_{{$pegawai->id}}">
-                        Aktif
-                    </button>
+                    <span class="badge rounded-pill bg-success">Tersedia</span>
                 @else
-                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#statusModal_{{$pegawai->id}}">
-                        Nonaktif
-                    </button>
+                    <span class="badge rounded-pill bg-danger">Tidak Tersedia</span>
                 @endif 
-                @include('pegawai.modal') 
             </td>
             <td class="text-center">
                 <a href="{{route('pegawai.edit',$pegawai->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$pegawai->id}}">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
                 @include('pegawai.modal')
             </td>
         </tr>

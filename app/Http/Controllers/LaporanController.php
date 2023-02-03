@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -164,6 +165,9 @@ class LaporanController extends Controller
                 'status' => IS_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
+            User::where('id', Auth::id())->update([
+                'status' => false
+            ]);
         }elseif($request->status == IS_SELESAI_DIPROSES){
             $laporan->update([
                 'status' => IS_SELESAI_DIPROSES,
@@ -172,6 +176,9 @@ class LaporanController extends Controller
         }elseif($request->status == IS_TUNTAS){
             $laporan->update([
                 'status' => IS_TUNTAS,
+            ]);
+            User::where('id', Auth::id())->update([
+                'status' => true
             ]);
         }
         return back()

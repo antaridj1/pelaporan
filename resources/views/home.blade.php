@@ -53,7 +53,7 @@
           </div>
           <div class="row">
             <!-- Terkirim -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-4">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   @if (auth()->user()->role === 'unit')
@@ -80,7 +80,7 @@
               </div>
             </div><!-- End Terkirim -->
             <!-- Diproses -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-4">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Diproses <span>| Per 2022</span></h5>
@@ -97,7 +97,7 @@
               </div>
             </div><!-- End Diproses -->
             <!-- Selesai -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-4">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Tuntas<span> | Per 2022</span></h5>

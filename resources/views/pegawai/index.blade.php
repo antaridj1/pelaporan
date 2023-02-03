@@ -21,6 +21,12 @@
         <div class="row">
             <!-- Recent Sales -->
             <div class="col-12">
+              @if(session()->has('status'))
+              <div class="alert alert-{{(session()->get('status') == 'success')? 'success' : 'danger'}} alert-dismissible fade show" role="alert">
+                {{session()->get('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LaporanController extends Controller
 {
@@ -18,12 +19,13 @@ class LaporanController extends Controller
     public function index(Request $request)
     {
         if($request->status)
-        {
+        {   
+            $pegawais = User::where('role','pegawai')->get();
             $laporans = Laporan::where('status',$request->status)->get();
-            return view('laporan.menu',compact('laporans'));
+            return view('laporan.menu',compact('laporans','pegawais'));
         }
         else
-        {
+        {   
             if(Auth::user()->role === 'unit'){
                 $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
             }elseif(Auth::user()->role === 'pegawai'){
@@ -149,8 +151,16 @@ class LaporanController extends Controller
         if ($request->status == IS_DITERIMA) {
             $laporan->update([
                 'status' => IS_DITERIMA,
-                'user_master_id' => Auth::id()
+                'user_master_id' => $request->pegawai
             ]);
+            $to = User::where('id',$request->pegawai)->value('email');
+
+            $details = [
+                'title' => 'Laporan Baru',
+                'body' => 'Anda memiliki satu laporan baru dari '.$laporan->user->name
+            ];
+            Mail::to($to)->send(new \App\Mail\SendEmail($details));
+
         }elseif($request->status == IS_DITOLAK){
             $request->validate([
                 'alasan_ditolak' => 'required',

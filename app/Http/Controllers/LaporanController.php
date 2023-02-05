@@ -90,9 +90,9 @@ class LaporanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   $pegawais = User::where('role','pegawai')->get();
         $laporan = Laporan::find($id);
-        return view('laporan.show',compact('laporan'));
+        return view('laporan.show',compact('laporan','pegawais'));
     }
 
     /**

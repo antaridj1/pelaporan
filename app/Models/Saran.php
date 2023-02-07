@@ -12,13 +12,7 @@ class Saran extends Model
     protected $fillable = [
         'detail',
         'user_id',
-        'laporan_id'
     ];
-
-    public function laporan()
-    {
-        return $this->belongsTo(Laporan::class, 'saran_id');
-    }
 
     public function user()
     {

@@ -187,7 +187,7 @@ class LaporanController extends Controller
             $laporan->update([
                 'status' => IS_TUNTAS,
             ]);
-            User::where('id', Auth::id())->update([
+            User::where('id', $laporan->user_master_id)->update([
                 'status' => true
             ]);
         }

@@ -42,7 +42,7 @@
       @if(auth()->user()->role !== 'pegawai')
       <li class="nav-item">
         <a class="nav-link {{Route::is('saran.index', 'saran.create')? '' : 'collapsed'}}" href="{{route('saran.index')}}">
-          <i class="bi bi bi-chat-left-text"></i>
+          <i class="bi bi-chat-left-text"></i>
           <span>Saran</span>
         </a>
       </li>

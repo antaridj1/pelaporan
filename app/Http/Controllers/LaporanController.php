@@ -157,7 +157,7 @@ class LaporanController extends Controller
 
             $details = [
                 'title' => 'Laporan Baru',
-                'body' => 'Anda memiliki satu laporan baru dari '.$laporan->user->name
+                'body' => 'Anda memiliki satu laporan baru dari '.$laporan->user->name.'. Klik pada link berikut: http://127.0.0.1:8000/laporan/'.$laporan->id
             ];
             Mail::to($to)->send(new \App\Mail\SendEmail($details));
 
@@ -183,6 +183,13 @@ class LaporanController extends Controller
                 'status' => IS_SELESAI_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
+            $to = User::where('id',$laporan->user->id)->value('email');
+
+            $details = [
+                'title' => 'Laporan Selesai Diproses',
+                'body' => 'Laporan Anda telah selesai diproses oleh BRI Cabang Gajah Mada. Klik link berikut untuk verifikasi: http://127.0.0.1:8000/laporan/'.$laporan->id
+            ];
+            Mail::to($to)->send(new \App\Mail\SendEmail($details));
         }elseif($request->status == IS_TUNTAS){
             $laporan->update([
                 'status' => IS_TUNTAS,

@@ -21,6 +21,7 @@ class CreateLaporansTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->text('alasan_ditolak')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->date('tanggal_diterima')->nullable();
             $table->unsignedBigInteger('user_master_id')->nullable();
             $table->timestamps();
         });

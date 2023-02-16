@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -151,7 +152,8 @@ class LaporanController extends Controller
         if ($request->status == IS_DITERIMA) {
             $laporan->update([
                 'status' => IS_DITERIMA,
-                'user_master_id' => $request->pegawai
+                'user_master_id' => $request->pegawai,
+                'tanggal_diterima' => Carbon::today()
             ]);
             $to = User::where('id',$request->pegawai)->value('email');
 

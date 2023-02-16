@@ -16,6 +16,7 @@ class Laporan extends Model
         'user_id',
         'status',
         'alasan_ditolak',
+        'tanggal_diterima',
         'user_master_id'
     ];
 

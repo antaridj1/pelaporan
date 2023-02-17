@@ -1,7 +1,7 @@
- <table class="table table-borderless datatable">
+ <table class="table table-bordered datatable">
     <thead>
     <tr>
-        <th class="text-center" scope="col">ID</th>
+        <th class="text-center" scope="col">No</th>
         <th class="text-center" scope="col">Kategori</th>
         <th scope="col">Judul</th>
         <th class="text-center" scope="col">Status</th>
@@ -15,7 +15,7 @@
     <tbody>
     @forelse ($laporans as $laporan)
         <tr>
-            <th class="text-center" scope="row">{{$laporan->converted_id}}</th>
+            <th class="text-center" scope="row">{{$loop->iteration}}</th>
             <td class="text-center">{{$laporan->kategori}}</td>
             <td>{{$laporan->judul}}</td>
             <td class="text-center">

@@ -2,13 +2,28 @@
     <div class="card">
         <div class="card-header">
         <div class="d-flex justify-content-between">
-            <span>{{$laporan->kategori}} | {{$laporan->converted_id}} | {{$laporan->created_at->format('d M Y')}}</span>
+            <span>{{$laporan->created_at->format('d M Y')}}</span>
             <span class="badge rounded-pill {{badge($laporan->status)}}">{{status($laporan->status)}}</span>
         </div>
         </div>
         <div class="card-body">
-        <h5 class="card-title">{{$laporan->judul}}</h5>
-        {{$laporan->detail}}
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th style="width:20px;">Kategori </th>
+                        <td>: {{$laporan->kategori}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:20px;">Judul </th>
+                        <td>: {{$laporan->judul}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:20px;">Detail </th>
+                        <td>: {{$laporan->detail}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
         </div>
         @if (auth()->user()->role === 'unit')
         <div class="card-footer">

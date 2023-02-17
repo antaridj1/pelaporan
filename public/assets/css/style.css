@@ -940,9 +940,9 @@ h6 {
   background: #dfeafc;
 }
 
-.dashboard .recent-sales .table thead th {
+/* .dashboard .recent-sales .table thead th {
   border: 0;
-}
+} */
 
 .dashboard .recent-sales .dataTable-top {
   padding: 0 0 10px 0;

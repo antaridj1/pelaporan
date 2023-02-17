@@ -25,7 +25,7 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Unit Bank BRI</h5>
-                    <a href="{{route('unit.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Pegawai</a>
+                    <a href="{{route('unit.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Unit</a>
                   </div>
                  @include('unit.table')
                 </div>

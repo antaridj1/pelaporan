@@ -1,7 +1,7 @@
- <table class="table table-borderless datatable">
+ <table class="table table-bordered datatable">
     <thead>
     <tr>
-        <th class="text-center" scope="col" style="width: 100px; overflow: hidden;">ID</th>
+        <th class="text-center" scope="col" style="width: 100px; overflow: hidden;">No</th>
         @if(auth()->user()->role == 'master_admin')
             <th class="text-center" scope="col">Pengirim</th>
         @endif
@@ -14,7 +14,7 @@
     <tbody>
     @forelse ($sarans as $saran)
         <tr>
-            <td class="text-center" scope="row" style="width: 100px; overflow: hidden;">{{$saran->id}}</td>
+            <td class="text-center" scope="row" style="width: 100px; overflow: hidden;">{{$loop->iteration}}</td>
             @if(auth()->user()->role == 'master_admin')
                 <td class="text-center">{{$saran->user->name}}</td>
             @endif

@@ -15,7 +15,7 @@ class CreateSaransTable extends Migration
     {
         Schema::create('sarans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('laporan_id');
+            $table->text('detail');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

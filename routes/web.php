@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\SaranController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,12 @@ Route::middleware('auth')->group(function(){
             '' => 'unit'
         ]);
         Route::patch('/{unit}/update-status', [UnitController::class, 'update_status'])->name('updateStatus');
+    });
+
+    Route::group(['prefix' => 'saran', 'as' => 'saran.'],function () {
+        Route::resource('/', SaranController::class)->parameters([
+            '' => 'saran'
+        ]);
     });
    
 });

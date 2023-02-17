@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LaporanController extends Controller
 {
@@ -17,12 +19,13 @@ class LaporanController extends Controller
     public function index(Request $request)
     {
         if($request->status)
-        {
+        {   
+            $pegawais = User::where('role','pegawai')->get();
             $laporans = Laporan::where('status',$request->status)->get();
-            return view('laporan.menu',compact('laporans'));
+            return view('laporan.menu',compact('laporans','pegawais'));
         }
         else
-        {
+        {   
             if(Auth::user()->role === 'unit'){
                 $laporans = Laporan::where('user_id',Auth::id())->latest()->get();
             }elseif(Auth::user()->role === 'pegawai'){
@@ -87,9 +90,9 @@ class LaporanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   $pegawais = User::where('role','pegawai')->get();
         $laporan = Laporan::find($id);
-        return view('laporan.show',compact('laporan'));
+        return view('laporan.show',compact('laporan','pegawais'));
     }
 
     /**
@@ -148,8 +151,16 @@ class LaporanController extends Controller
         if ($request->status == IS_DITERIMA) {
             $laporan->update([
                 'status' => IS_DITERIMA,
-                'user_master_id' => Auth::id()
+                'user_master_id' => $request->pegawai
             ]);
+            $to = User::where('id',$request->pegawai)->value('email');
+
+            $details = [
+                'title' => 'Laporan Baru',
+                'body' => 'Anda memiliki satu laporan baru dari '.$laporan->user->name.'. Klik pada link berikut: http://127.0.0.1:8000/laporan/'.$laporan->id
+            ];
+            Mail::to($to)->send(new \App\Mail\SendEmail($details));
+
         }elseif($request->status == IS_DITOLAK){
             $request->validate([
                 'alasan_ditolak' => 'required',
@@ -164,14 +175,27 @@ class LaporanController extends Controller
                 'status' => IS_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
+            User::where('id', Auth::id())->update([
+                'status' => false
+            ]);
         }elseif($request->status == IS_SELESAI_DIPROSES){
             $laporan->update([
                 'status' => IS_SELESAI_DIPROSES,
                 'user_master_id' => Auth::id(),
             ]);
+            $to = User::where('id',$laporan->user->id)->value('email');
+
+            $details = [
+                'title' => 'Laporan Selesai Diproses',
+                'body' => 'Laporan Anda telah selesai diproses oleh BRI Cabang Gajah Mada. Klik link berikut untuk verifikasi: http://127.0.0.1:8000/laporan/'.$laporan->id
+            ];
+            Mail::to($to)->send(new \App\Mail\SendEmail($details));
         }elseif($request->status == IS_TUNTAS){
             $laporan->update([
                 'status' => IS_TUNTAS,
+            ]);
+            User::where('id', $laporan->user_master_id)->update([
+                'status' => true
             ]);
         }
         return back()

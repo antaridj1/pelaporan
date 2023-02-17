@@ -22,6 +22,12 @@
       <div class="row">
         <!-- Left side columns -->
         <div class="col-lg-12">
+          @if(session()->has('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{session()->get('message')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          @endif
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Form Edit</h5>

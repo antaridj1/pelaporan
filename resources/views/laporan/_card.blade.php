@@ -60,10 +60,11 @@
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#tolakModal_{{$laporan->id}}">
                         Tolak
                     </button>
+                    @include('layout.modal')
                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#terimaModal_{{$laporan->id}}">
                         Terima
                     </button>
-                    @include('layout.modal')
+                    @include('laporan.modal')
                 @elseif($laporan->status === IS_DITOLAK)
                     <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
                     @include('layout.modal') 

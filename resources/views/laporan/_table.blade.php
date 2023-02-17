@@ -5,7 +5,7 @@
         <th class="text-center" scope="col">Kategori</th>
         <th scope="col">Judul</th>
         <th class="text-center" scope="col">Status</th>
-        @if (auth()->user()->role === 'master_unit' || auth()->user()->role === 'pegawai')
+        @if (auth()->user()->role === 'master_admin' || auth()->user()->role === 'pegawai')
             <th class="text-center" scope="col">Pengirim</th>
         @endif
         <th class="text-center" scope="col">Penanggungjawab</th>

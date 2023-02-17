@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">   
-        <h1>Pegawai</h1>
+        <h1>Saran</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Pegawai</li>
+            <li class="breadcrumb-item active">Saran</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -30,10 +30,12 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Pegawai</h5>
-                    <a href="{{route('pegawai.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Pegawai</a>
+                    <h5 class="card-title">Saran <span>| Per 2022</span></h5>
+                    @if(auth()->user()->role === 'unit')
+                      <a href="{{route('saran.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Saran</a>
+                    @endif
                   </div>
-                 @include('pegawai._table')
+                 @include('saran._table')
                 </div>
 
               </div>

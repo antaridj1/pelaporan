@@ -28,12 +28,7 @@ class Laporan extends Model
     {
         return $this->belongsTo(User::class, 'user_master_id');
     }
-
-    public function sarans()
-    {
-        return $this->hasMany(Saran::class, 'saran_id');
-    }
-
+    
     public function getConvertedIdAttribute()
     {
         return str_pad($this->id, 6, '0', STR_PAD_LEFT);

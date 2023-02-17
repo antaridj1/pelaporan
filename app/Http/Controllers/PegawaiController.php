@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class PegawaiController extends Controller
 {
     /**
@@ -98,6 +98,17 @@ class PegawaiController extends Controller
             ->with('status','success')
             ->with('message','Status pegawai berhasil diedit');
         
+    }
+
+    public function destroy(User $pegawai){
+        $pegawai->update([
+            'email' => Str::random(8).'@gmail.com'
+        ]);
+        $pegawai->delete();
+
+        return redirect('pegawai')
+            ->with('status','success')
+            ->with('message','Akun berhasil dihapus');
     }
 
 }

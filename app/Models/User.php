@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     public function jumlah_laporan_ditangani()
     {
-        return Laporan::where('user_master_id',$this->id)->where('status','selesai')->get()->count();
+        return Laporan::where('user_master_id',$this->id)->where('status',5)->get()->count();
     }
 
     /**

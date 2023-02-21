@@ -17,10 +17,10 @@
             <td class="text-center">{{$pegawai->email}}</td>
             <td class="text-center">{{$pegawai->jumlah_laporan_ditangani()}}</td>
             <td class="text-center">
-                @if ($pegawai->status == true)
+                @if ($pegawai->status == true && $pegawai->isPresent == true)
                     <span class="badge rounded-pill bg-success">Tersedia</span>
                 @else
-                    <span class="badge rounded-pill bg-danger">Tidak Tersedia</span>
+                    <span class="badge rounded-pill bg-danger">Tidak Tersedia {{($pegawai->isPresent == false)? '(Tidak Hadir)' : ''}}</span>
                 @endif 
             </td>
             <td class="text-center">

@@ -30,8 +30,43 @@
           @endif
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Form Edit</h5>
-
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title">Form Edit</h5>
+                @if(auth()->user()->role === 'pegawai')
+                  @if(auth()->user()->isPresent == true)
+                    <a href="#" class="btn btn-sm btn-success my-3" data-bs-toggle="modal" data-bs-target="#statusModal_{{auth()->user()->id}}">
+                      <i class="bi bi-person-check-fill"></i> Hadir
+                    </a>
+                  @else
+                    <a href="#" class="btn btn-sm btn-danger my-3" data-bs-toggle="modal" data-bs-target="#statusModal_{{auth()->user()->id}}">
+                      <i class="bi bi-person-dash-fill"></i> Tidak Hadir
+                    </a>
+                  @endif
+                  <div class="modal fade" id="statusModal_{{auth()->user()->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kehadiran</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form method="post" action="{{route('pegawai.updateKehadiran',auth()->user()->id)}}">
+                            @method('patch')
+                            @csrf
+                            <div class="form-group"> 
+                                <p>Apakah Anda yakin ingin mengubah kehadiran hari ini menjadi {{(auth()->user()->isPresent == true) ? 'tidak hadir' : 'hadir'}}?</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                                <button type="submit" class="btn btn-primary" >Yakin </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+              </div>
               <!-- Floating Labels Form -->
               <form method="post" action="{{route('profile.update')}}" class="row g-3">
                 @csrf

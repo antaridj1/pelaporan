@@ -14,14 +14,14 @@
                 <p>Pilih pegawai yang akan memproses laporan ini :</p>
                 @foreach ($pegawais as $pegawai)
                   <div class="form-check border py-3 mb-2" style="padding-left: 2.5rem; border-radius: 10px;">
-                    <input class="form-check-input" type="radio" {{($pegawai->status == false)? 'disabled' : ''}} name="pegawai" id="pegawai_{{$pegawai->id}}" value="{{$pegawai->id}}">
+                    <input class="form-check-input" type="radio" {{($pegawai->status == false || $pegawai->isPresent == false)? 'disabled' : ''}} name="pegawai" id="pegawai_{{$pegawai->id}}" value="{{$pegawai->id}}">
                     <label class="form-check-labelv ml-2" for="pegawai_{{$pegawai->id}}">
                       {{$pegawai->name}} 
                     </label>
-                    @if ($pegawai->status == true)
+                    @if ($pegawai->status == true && $pegawai->isPresent == true)
                       <span class="badge badge-sm rounded-pill bg-success">Tersedia</span>
                     @else
-                        <span class="badge rounded-pill bg-secondary">Tidak Tersedia</span>
+                        <span class="badge rounded-pill bg-secondary">Tidak Tersedia {{($pegawai->isPresent == false)? '(Tidak Hadir)' : ''}}</span>
                     @endif
                   </div> 
                 @endforeach

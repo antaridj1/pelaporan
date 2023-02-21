@@ -100,6 +100,23 @@ class PegawaiController extends Controller
         
     }
 
+    public function update_kehadiran(User $pegawai){
+        if ($pegawai->isPresent == true) {
+            $pegawai->update([
+                'isPresent' => false
+            ]);
+        } else {
+            $pegawai->update([
+                'isPresent' => true
+            ]);
+        }
+
+        return redirect('profile')
+            ->with('status','success')
+            ->with('message','Kehadiran pegawai berhasil diedit');
+        
+    }
+
     public function destroy(User $pegawai){
         $pegawai->update([
             'email' => Str::random(8).'@gmail.com'

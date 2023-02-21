@@ -21,6 +21,12 @@
                         <th style="width:20px;">Detail </th>
                         <td>: {{$laporan->detail}}</td>
                     </tr>
+                    @if($laporan->detail_perbaikan !== null)
+                    <tr>
+                        <th style="width:20px;">Detail Perbaikan</th>
+                        <td>: {{$laporan->detail_perbaikan}}</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         
@@ -41,10 +47,18 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
                         @include('layout.modal')
                     @elseif($laporan->status == IS_SELESAI_DIPROSES)
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#verifiedModal_{{$laporan->id}}">
-                            Selesai
+                    <div>
+                        @if($laporan->detail_perbaikan == null)
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#perbaikanModal_{{$laporan->id}}">
+                                Perbaikan
+                            </button>
+                            @include('layout.modal')
+                        @endif
+                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#verifiedModal_{{$laporan->id}}">
+                            Tuntas
                         </button>
-                        @include('layout.modal')
+                        @include('layout.modal') 
+                    </div>  
                     @endif 
             </div>
         </div>
@@ -77,7 +91,7 @@
             <div class="d-flex justify-content-between">
             <p>Pengirim : {{$laporan->user->name}}</p>
             <div>
-                @if($laporan->status == IS_DITERIMA)
+                @if($laporan->status == IS_DITERIMA || $laporan->status == IS_PERBAIKAN)
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#prosesModal_{{$laporan->id}}">
                     Proses Sekarang
                 </button>

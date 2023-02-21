@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function(){
             '' => 'pegawai'
         ]);
         Route::patch('/{pegawai}/update-status', [PegawaiController::class, 'update_status'])->name('updateStatus');
+        Route::patch('/{pegawai}/update-kehadiran', [PegawaiController::class, 'update_kehadiran'])->name('updateKehadiran');
     });
 
     Route::group(['prefix' => 'unit', 'as' => 'unit.'],function () {

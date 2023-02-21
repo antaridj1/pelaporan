@@ -23,6 +23,7 @@ class CreateLaporansTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('tanggal_diterima')->nullable();
             $table->unsignedBigInteger('user_master_id')->nullable();
+            $table->text('detail_perbaikan')->nullable();
             $table->timestamps();
         });
     }

@@ -140,3 +140,32 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="perbaikanModal_{{$laporan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Detail Perbaikan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{{route('laporan.verifikasi',$laporan->id)}}?status={{IS_PERBAIKAN}}">
+            @method('patch')
+            @csrf
+            <div class="form-group"> 
+              <textarea class="form-control mb-3 @error('detail_perbaikan') is-invalid @enderror" id="floatingTextarea" name="detail_perbaikan" style="height: 100px;" placeholder="Tuliskan permasalahan yang belum tuntas"></textarea>
+              @error('detail_perbaikan')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+              @enderror
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                <button type="submit" class="btn btn-primary" >Kirim</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

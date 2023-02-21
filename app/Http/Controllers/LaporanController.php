@@ -150,6 +150,9 @@ class LaporanController extends Controller
 
     public function verifikasi(Request $request, Laporan $laporan){
         if ($request->status == IS_DITERIMA) {
+            $request->validate([
+                'pegawai' => 'required',
+            ]);
             $laporan->update([
                 'status' => IS_DITERIMA,
                 'user_master_id' => $request->pegawai,
@@ -192,7 +195,24 @@ class LaporanController extends Controller
                 'body' => 'Laporan Anda telah selesai diproses oleh BRI Cabang Gajah Mada. Klik link berikut untuk verifikasi: http://127.0.0.1:8000/laporan/'.$laporan->id
             ];
             Mail::to($to)->send(new \App\Mail\SendEmail($details));
-        }elseif($request->status == IS_TUNTAS){
+
+        }elseif($request->status == IS_PERBAIKAN){
+            $request->validate([
+                'detail_perbaikan' => 'required',
+            ]);
+            $laporan->update([
+                'status' => IS_PERBAIKAN,
+                'detail_perbaikan' => $request->detail_perbaikan
+            ]);
+            $to = User::where('id',$request->pegawai)->value('email');
+
+            $details = [
+                'title' => 'Perbaikan Laporan',
+                'body' => 'Anda memiliki satu laporan yang perlu perbaikan dari '.$laporan->user->name.'. Klik pada link berikut: http://127.0.0.1:8000/laporan/'.$laporan->id
+            ];
+            Mail::to($to)->send(new \App\Mail\SendEmail($details));
+        }
+        elseif($request->status == IS_TUNTAS){
             $laporan->update([
                 'status' => IS_TUNTAS,
             ]);

@@ -5,6 +5,7 @@ const IS_DITOLAK = 2;
 const IS_DIPROSES = 3;
 const IS_SELESAI_DIPROSES = 4;
 const IS_TUNTAS = 5;
+const IS_PERBAIKAN = 6;
 
 
 function status($status){
@@ -26,6 +27,9 @@ function status($status){
             break;
         case 5:
             return "Tuntas";
+            break;
+        case 6:
+            return "Perbaikan";
             break;
         default:
             return "Terkirim";
@@ -51,6 +55,9 @@ function badge($status){
             break;
         case 5:
             return "bg-success";
+            break;
+        case 6:
+            return "bg-danger";
             break;
         default:
             return "bg-secondary";

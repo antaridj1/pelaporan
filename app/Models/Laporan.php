@@ -17,7 +17,8 @@ class Laporan extends Model
         'status',
         'alasan_ditolak',
         'tanggal_diterima',
-        'user_master_id'
+        'user_master_id',
+        'detail_perbaikan'
     ];
 
     public function user()

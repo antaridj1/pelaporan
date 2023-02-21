@@ -55,7 +55,7 @@
                             @include('layout.modal')
                         @endif
                         <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#verifiedModal_{{$laporan->id}}">
-                            Tuntas
+                            Validasi
                         </button>
                         @include('layout.modal') 
                     </div>  

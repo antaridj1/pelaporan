@@ -51,7 +51,7 @@ class UnitController extends Controller
 
         return redirect('unit')
             ->with('status','success')
-            ->with('message','Pegawai berhasil ditambah');
+            ->with('message','Unit berhasil ditambah');
     }
 
     public function edit(User $unit)

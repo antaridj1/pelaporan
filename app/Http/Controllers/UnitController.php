@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UnitController extends Controller
 {
@@ -98,5 +99,16 @@ class UnitController extends Controller
             ->with('status','success')
             ->with('message','Status unit berhasil diedit');
         
+    }
+
+    public function destroy(User $unit){
+        $unit->update([
+            'email' => Str::random(8).'@gmail.com'
+        ]);
+        $unit->delete();
+
+        return redirect('unit')
+            ->with('status','success')
+            ->with('message','Akun berhasil dihapus');
     }
 }

@@ -28,8 +28,11 @@
             </td>
             <td class="text-center">
                 <a href="{{route('unit.edit',$unit->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                    @include('unit.modal')
-                </td>
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$unit->id}}">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+                @include('unit.modal')
+            </td>
         
         </tr>
     @empty

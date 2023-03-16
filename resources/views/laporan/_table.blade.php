@@ -40,7 +40,7 @@
                 </td>
             @else
                 <td class="text-center">{{$laporan->user->name}}</td>
-                <td class="text-center">{{($laporan->tanggal_diterima)? \Carbon\Carbon::parse($laporan->tanggal_diterima)->format('d/m/yy') : '-'}}</td>
+                <td class="text-center">{{($laporan->tanggal_diterima)? \Carbon\Carbon::parse($laporan->tanggal_diterima)->format('d/m/Y') : '-'}}</td>
                 <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
                 <td class="text-center"><a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a></td>
             @endif

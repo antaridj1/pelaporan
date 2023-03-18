@@ -19,7 +19,7 @@ class UserController extends Controller
         if($request->password){
             $request->validate([
                 'name' => 'required',
-                'email' => 'required',
+                'email' => 'required|email|unique:users',
                 'password' => 'min:8'
             ]);
             User::where('id', Auth::id())->update([
@@ -30,7 +30,7 @@ class UserController extends Controller
         } else {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required',
+                'email' => 'required|email|unique:users',
             ]);
             User::where('id', Auth::id())->update([
                 'name' => $request->name,

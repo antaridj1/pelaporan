@@ -26,8 +26,8 @@
 1. **Clone Repository**
 
    ```bash
-    git clone https://github.com/your-username/reporting.git
-    cd reporting
+    git clone https://github.com/your-username/reporting-web.git
+    cd reporting-web
     composer install
     ```
 2. **Create Environtment** Don't forget to add mail credential for email notification
@@ -39,7 +39,7 @@
     php artisan key:generate
     ```
 4. **Create Database**
-    Create a database named "rentcar"
+    Create a database named "reporting"
 
 5. **Run The Migrations**
     ```bash
